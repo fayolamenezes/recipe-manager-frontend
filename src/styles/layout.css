@@ -1,0 +1,165 @@
+/* layout.css */
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a; /* slightly lighter than pure black for sophistication */
+  padding: 1rem 3rem;
+  color: #f5f5f5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  flex-wrap: nowrap;          /* prevent wrapping */
+  overflow-x: auto;           /* allow horizontal scroll if needed */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+}
+
+.navbar::-webkit-scrollbar {
+  display: none;              /* hide scrollbar in WebKit */
+}
+.navbar {
+  -ms-overflow-style: none;  /* hide scrollbar in IE/Edge */
+  scrollbar-width: none;     /* hide scrollbar in Firefox */
+}
+
+.navbar .logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f5f5f5;
+  text-decoration: none;
+  letter-spacing: 1px;
+  user-select: none;
+  transition: color 0.3s ease;
+  white-space: nowrap;        /* no wrap on logo */
+}
+
+.navbar .logo:hover {
+  color: #64d1c5; /* accent teal */
+}
+
+.navbar .nav-link {
+  margin-left: 1.5rem;
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  white-space: nowrap;        /* prevent wrap */
+}
+
+.navbar .nav-link:hover {
+  color: #64d1c5; /* accent teal */
+  text-decoration: underline;
+}
+
+.navbar .logout-btn {
+  margin-left: 1.5rem;
+  background-color: #e55353;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(229, 83, 83, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;        /* prevent wrap */
+}
+
+.navbar .logout-btn:hover {
+  background-color: #c44343;
+  box-shadow: 0 4px 12px rgba(196, 67, 67, 0.7);
+}
+
+.welcome {
+  margin-right: 1.5rem;
+  font-weight: 500;
+  color: #ccc;
+  font-style: italic;
+  white-space: nowrap;        /* prevent wrap */
+}
+
+/* Footer */
+.footer {
+  margin-top: 3rem;
+  padding: 1.25rem 2rem;
+  background-color: #fafafa;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  border-top: 1px solid #ddd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none;
+}
+
+/* Additional navbar layout styles */
+
+.nav-left {
+  flex: 1;
+  min-width: 0; /* allow shrinking */
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  flex-wrap: nowrap;          /* prevent wrapping */
+  white-space: nowrap;        /* no text wrap */
+  min-width: 0;               /* allow shrinking */
+}
+
+/* For links inside nav-right */
+.nav-right a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-right a:hover {
+  color: #64d1c5; /* teal accent */
+  text-decoration: underline;
+}
+
+/* Welcome text */
+.welcome {
+  font-style: italic;
+  color: #ccc;
+  font-weight: 500;
+  user-select: none;
+}
+
+/* Button reset for logout, matching logout-btn styles */
+button.logout-btn {
+  background-color: #e55353;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(229, 83, 83, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+button.logout-btn:hover {
+  background-color: #c44343;
+  box-shadow: 0 4px 12px rgba(196, 67, 67, 0.7);
+}
+
+/* Responsive tweaks: keep nav horizontal with scroll on small screens */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+  .nav-right {
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 1rem;
+  }
+}

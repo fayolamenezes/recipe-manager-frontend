@@ -1,0 +1,78 @@
+/* forms.css */
+
+/* General input & button styling */
+input,
+textarea,
+select,
+button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Input focus styles */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #64d1c5;
+  box-shadow: 0 0 0 3px rgba(100, 209, 197, 0.3);
+  outline: none;
+}
+
+/* Button base */
+button {
+  background-color: #64d1c5;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 6px rgba(100, 209, 197, 0.4);
+}
+
+/* Button hover */
+button:hover {
+  background-color: #4cb4ad;
+  box-shadow: 0 4px 10px rgba(76, 180, 173, 0.5);
+}
+
+/* Disabled buttons */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Error styling (optional utility class) */
+input.error,
+textarea.error,
+select.error {
+  border-color: #e55353;
+  background-color: #fff5f5;
+}
+
+.error-message {
+  color: #e55353;
+  font-size: 0.875rem;
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Label styling */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}

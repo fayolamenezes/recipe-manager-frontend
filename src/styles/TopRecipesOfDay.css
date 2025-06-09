@@ -1,0 +1,99 @@
+/* TopRecipesOfDay.css */
+
+.top-recipes-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.top-recipes-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.recipe-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.recipe-card h3 {
+  margin-top: 0;
+  color: #34495e;
+}
+
+.recipe-card p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.recipe-card img {
+  display: block;
+  margin: 1rem 0;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.recipe-card button {
+  margin-top: 0.75rem;
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.recipe-card button:hover {
+  background-color: #c0392b;
+}
+
+.rating-message {
+  text-align: center;
+  color: #27ae60;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.error {
+  text-align: center;
+  color: #e74c3c;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .top-recipes-container {
+    padding: 0.75rem;
+  }
+
+  .recipe-card {
+    padding: 1rem;
+  }
+
+  .recipe-card img {
+    max-width: 100%;
+    height: auto;
+  }
+}

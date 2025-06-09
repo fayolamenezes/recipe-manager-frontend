@@ -1,0 +1,129 @@
+/* CommentsSection.css */
+
+.comments-section {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  border-top: 1px solid #ddd;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Section heading */
+.comments-section h4 {
+  margin-bottom: 1.25rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Comment list */
+.comments-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+/* Individual comment */
+.comment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 0.75rem;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Author */
+.comment-item strong {
+  color: #2980b9;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* Text */
+.comment-item span {
+  flex-grow: 1;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* Delete button */
+.delete-comment-btn {
+  background: transparent;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.delete-comment-btn:hover {
+  color: #c0392b;
+}
+
+/* Add comment form */
+.add-comment-form {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.add-comment-form input[type="text"] {
+  flex-grow: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.add-comment-form input[type="text"]:focus {
+  border-color: #64d1c5;
+  outline: none;
+  box-shadow: 0 0 4px rgba(100, 209, 197, 0.3);
+}
+
+/* Submit button */
+.add-comment-form button {
+  padding: 0.6rem 1.2rem;
+  background-color: #64d1c5;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-comment-form button:hover {
+  background-color: #4bbdb1;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .comments-section {
+    padding: 1rem;
+  }
+
+  .add-comment-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .add-comment-form button {
+    width: 100%;
+  }
+}
