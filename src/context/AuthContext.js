@@ -8,36 +8,35 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchUser = async () => {
     const token = localStorage.getItem('token');
-    if (!token) return;
+    if (!token) {
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await api.get('/auth/me');
       setUser(res.data);
     } catch (err) {
+      // 👇 Handle 404 or invalid token
       localStorage.removeItem('token');
       setUser(null);
+    } finally {
+      setLoading(false);
     }
   };
 
   const login = async (email, password) => {
-    try {
-      const res = await api.post('/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token);
-      await fetchUser();
-    } catch (error) {
-      throw error;
-    }
+    const res = await api.post('/auth/login', { email, password });
+    localStorage.setItem('token', res.data.token);
+    await fetchUser();
   };
 
   const register = async (name, email, password) => {
-    try {
-      await api.post('/auth/signup', { name, email, password });
-    } catch (error) {
-      throw error;
-    }
+    await api.post('/auth/signup', { name, email, password });
   };
 
   const logout = () => {
@@ -50,7 +49,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

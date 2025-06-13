@@ -15,6 +15,7 @@ const Navbar = () => {
           <>
             <span className="welcome">Hello, {user.name}</span>
             <Link to="/recipes">Recipes</Link>
+            <Link to="/chatbot" className="nav-link">Recipe Chatbot</Link>
             <Link to="/recipes/create">Create Recipe</Link>
             <Link to="/planner">Planner</Link>
             <Link to="/grocery">Grocery List</Link>

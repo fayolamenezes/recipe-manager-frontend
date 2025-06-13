@@ -1,5 +1,4 @@
-// src/pages/Login.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -10,22 +9,37 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
-  // If already logged in, redirect to recipes
-  if (user) {
-    return <Navigate to="/recipes" replace />;
-  }
+  const [loadingLogin, setLoadingLogin] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoadingLogin(true);
     try {
       await login(email, password);
-      navigate('/recipes');
-    } catch {
+      // Redirection will happen in useEffect below
+    } catch (err) {
+     if (err.response?.status === 403) {
+      setError(err.response.data.message); // "Your account has been banned"
+     } else {
       setError('Invalid email or password');
     }
+   } 
   };
+
+  useEffect(() => {
+    if (user) {
+      if (user.isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/recipes');
+      }
+    }
+  }, [user, navigate]);
+
+  if (user) {
+    return null; // Already handled in useEffect
+  }
 
   return (
     <div className="container">
@@ -52,7 +66,9 @@ const Login = () => {
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loadingLogin}>
+          {loadingLogin ? 'Logging in...' : 'Login'}
+        </button>
       </form>
     </div>
   );

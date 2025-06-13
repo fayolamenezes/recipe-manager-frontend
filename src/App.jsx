@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Recipe from './components/Recipe'; // optional for single recipe view
+import AdminDashboard from './pages/AdminDashboard';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -15,6 +15,7 @@ import TopRecipesOfDay from './pages/TopRecipesOfDay';
 import PrivateLibrary from './pages/PrivateLibrary';
 import Planner from './pages/Planner';
 import GroceryList from './pages/GroceryList';
+import RecipeChatbotPage from './pages/RecipeChatbotPage';
 
 import { useAuth } from './context/AuthContext';
 
@@ -24,30 +25,71 @@ const PrivateRoute = ({ children }) => {
   return user ? children : <Navigate to="/login" replace />;
 };
 
+// Admin-only Route component
+const AdminRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user && user.isAdmin ? children : <Navigate to="/recipes" replace />;
+};
+
 function App() {
+  const { user } = useAuth();
+
   return (
     <Router>
       <Navbar />
       <main style={{ minHeight: '80vh', padding: '1rem' }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+
+          {/* Public routes with redirect if logged in */}
+          <Route
+            path="/login"
+            element={
+              user ? (
+                <Navigate to={user.isAdmin ? '/admin' : '/recipes'} replace />
+              ) : (
+                <Login />
+              )
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              user ? (
+                <Navigate to={user.isAdmin ? '/admin' : '/recipes'} replace />
+              ) : (
+                <Register />
+              )
+            }
+          />
+
+          {/* Public pages */}
           <Route path="/recipes/:recipeId" element={<SingleRecipePage />} />
           <Route path="/top-recipes" element={<TopRecipesOfDay />} />
           <Route path="/private-library" element={<PrivateLibrary />} />
           <Route path="/planner" element={<Planner />} />
           <Route path="/grocery" element={<GroceryList />} />
-
-          {/* Public Recipe List Page */}
           <Route path="/recipes" element={<RecipeList />} />
+          <Route path="/chatbot" element={<RecipeChatbotPage />} />
 
-          {/* Protected Create Recipe Page */}
+          {/* Protected Routes */}
           <Route
             path="/recipes/create"
             element={
               <PrivateRoute>
                 <CreateRecipe />
+              </PrivateRoute>
+            }
+          />
+
+          {/* Admin Route */}
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
               </PrivateRoute>
             }
           />
