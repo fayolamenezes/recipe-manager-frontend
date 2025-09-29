@@ -164,88 +164,101 @@ button.logout-btn:hover {
   }
 }
 
-/* ====== Minimal, professional nav styling (scoped) ====== */
-.nav {
-  position: sticky; top: 0; z-index: 40;
-  backdrop-filter: saturate(180%) blur(8px);
-  background: #ffffffcc;                 /* light */
-  border-bottom: 1px solid #e6e8ef;
-}
-:root .dark .nav { background: #0f172acc; border-bottom-color: #1e293b; }
+/* ==== Sleek Professional Navbar ==== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
-.nav__inner {
-  height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  max-width: 1200px; margin: 0 auto; padding: 0 16px;
-}
+  background: var(--nav-bg, #fff);
+  color: var(--nav-text, #111827);
+  border-bottom: 1px solid #e5e7eb;
 
-.nav__brand {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: inherit; text-decoration: none; font-weight: 800;
-}
-.nav__logo {
-  width: 26px; height: 26px; border-radius: 8px;
-  background: linear-gradient(135deg, #3b6ae9, #2152d9);
-}
-.nav__brandText { letter-spacing: .2px; }
-
-.nav__menuBtn {
-  display: none; border: 1px solid #e6e8ef; background: white;
-  padding: 8px 12px; border-radius: 10px; font-weight: 700; cursor: pointer;
-}
-.dark .nav__menuBtn { background: #0f172a; border-color: #1e293b; color: #e5e7eb; }
-
-.nav__panel {
-  display: flex; align-items: center; gap: 16px;
-}
-.nav__main { display: flex; gap: 10px; }
-.nav__actions { display: flex; gap: 8px; align-items: center; }
-
-.nav__link {
-  padding: 8px 12px; border-radius: 10px;
-  color: inherit; text-decoration: none; font-weight: 600;
-  border: 1px solid transparent;
-}
-.nav__link:hover { border-color: #e6e8ef; text-decoration: none; }
-.dark .nav__link:hover { border-color: #22314a; }
-.nav__link.is-active {
-  border-color: #cfd7ff;
-  background: #f3f6ff;
-}
-.dark .nav__link.is-active {
-  border-color: #2a3b63;
-  background: #0d1a36;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
 }
 
-/* Buttons in nav (scoped) */
-.nav__btn {
-  padding: 8px 12px; border-radius: 10px; border: 1px solid #e6e8ef;
-  background: white; font-weight: 700; cursor: pointer; text-decoration: none; color: inherit;
-}
-.nav__btn:hover { border-color: #cfd7ff; }
-.dark .nav__btn { background: #0f172a; border-color: #1e293b; color: #e5e7eb; }
-.dark .nav__btn:hover { border-color: #2a3b63; }
-
-.nav__btn--primary {
-  background: linear-gradient(135deg, #3b6ae9, #2152d9); color: #fff; border-color: #2152d9;
+/* Dark mode if you toggle .dark on <html> */
+.dark .navbar {
+  background: #111827;
+  border-bottom-color: #1f2937;
+  color: #f3f4f6;
 }
 
-/* Responsive: turn into slide-down menu */
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Links */
+.nav-right a,
+.nav-right .nav-link {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-right a:hover,
+.nav-right .nav-link:hover {
+  background: #f3f4f6;
+}
+.dark .nav-right a:hover,
+.dark .nav-right .nav-link:hover {
+  background: #1f2937;
+}
+
+/* Welcome text */
+.welcome {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+.dark .welcome {
+  color: #9ca3af;
+}
+
+/* Logout button */
+.logout-btn {
+  border: 1px solid #d1d5db;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.logout-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+.dark .logout-btn:hover {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+/* Compact layout for smaller screens */
 @media (max-width: 900px) {
-  .nav__menuBtn { display: inline-flex; }
-  .nav__panel {
-    position: fixed; right: 12px; left: 12px; top: 72px;
-    flex-direction: column; gap: 12px;
-    background: var(--panel, #fff);
-    border: 1px solid #e6e8ef;
-    border-radius: 12px; padding: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.08);
-    transform: translateY(-16px); opacity: 0; pointer-events: none;
-    transition: transform .18s ease, opacity .18s ease;
+  .nav-right {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
-  .dark .nav__panel { background: #0f172a; border-color: #1e293b; }
-  .nav__panel.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-  .nav__inner { height: 64px; }
-  .nav__main, .nav__actions { flex-direction: column; align-items: stretch; }
+  .welcome {
+    display: none; /* hides greeting for space */
+  }
 }
-
